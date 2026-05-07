@@ -36,15 +36,32 @@ Software engineer specialising in AI / LLM integration, agentic systems, and shi
 - **Future Advanced Internet Solutions** — ASP.NET Developer Intern (Sep–Dec 2024): MVC + Entity Framework, query optimisation, role-based auth.
 - **SHAI for AI** — Full Stack Developer Intern (May–Sep 2022): JavaScript + C# full-stack, third-party API integration in an AI product environment.
 
-## AI certifications (2026)
+## AI certifications (26 total, all 2026)
 
-- Anthropic — Model Context Protocol: Advanced Topics
-- Anthropic — Claude with Amazon Bedrock
-- Anthropic — Claude with Google Cloud Vertex AI
-- Anthropic — AI Capabilities and Limitations
-- Google — Google AI Essentials
-- Google — Google Prompting Essentials
-- Coursera — AI for App Building
+**Anthropic — production / deep technical (16):**
+- Model Context Protocol: Advanced Topics
+- Introduction to Model Context Protocol
+- Claude with Amazon Bedrock
+- Claude with Google Vertex AI
+- Claude with the Anthropic API
+- Claude Code in Action
+- Introduction to subagents
+- Introduction to agent skills
+- Introduction to Claude Cowork
+- Claude 101
+- AI Fluency: Framework & Foundations
+- AI Fluency: AI Capabilities & Limitations
+- Teaching the AI Fluency Framework
+- AI Fluency for educators / students / nonprofits
+
+**Google AI for Work specialization (10):**
+- AI for App Building · AI for Data Analysis · AI for Content Creation
+- AI for Research and Insights · AI for Brainstorming and Planning
+- AI for Writing and Communicating · Use AI as a Creative or Expert Partner
+- Design Prompts for Everyday Work Tasks · Speed Up Data Analysis and Presentation Building
+- Start Writing Prompts like a Pro
+
+All cert verifiers are linked from each card on the portfolio (Skilljar for Anthropic, Coursera for Google).
 
 ## Currently exploring
 

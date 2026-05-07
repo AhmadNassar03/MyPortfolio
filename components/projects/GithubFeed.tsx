@@ -1,115 +1,169 @@
 import Link from "next/link";
+import { projects, profile, type Project } from "@/content/cv";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { fetchTopRepos } from "@/lib/github";
+import clsx from "clsx";
 
-const langColors: Record<string, string> = {
-  TypeScript: "oklch(72% 0.16 240)",
-  JavaScript: "oklch(85% 0.18 95)",
-  "C#": "oklch(60% 0.18 290)",
-  Python: "oklch(75% 0.14 80)",
-  Java: "oklch(72% 0.16 25)",
-  CSS: "oklch(70% 0.16 280)",
-  HTML: "oklch(72% 0.18 30)",
+const TOP_BUILD_SLUGS = ["omniagent", "workforce-ai", "leadgrade"] as const;
+
+const accentBg: Record<Project["accent"], string> = {
+  violet:
+    "bg-gradient-to-br from-[oklch(60%_0.22_290)]/15 to-transparent",
+  cyan: "bg-gradient-to-br from-[oklch(75%_0.16_200)]/15 to-transparent",
+  pink: "bg-gradient-to-br from-[oklch(82%_0.12_350)]/15 to-transparent",
+  amber: "bg-gradient-to-br from-[oklch(78%_0.14_75)]/15 to-transparent",
 };
 
-export async function GithubFeed() {
-  const repos = await fetchTopRepos(6);
+const statusDot: Record<Project["status"], string> = {
+  live: "bg-[oklch(72%_0.18_145)]",
+  private: "bg-[oklch(75%_0.16_75)]",
+  archived: "bg-[oklch(60%_0.02_280)]",
+};
+
+const statusText: Record<Project["status"], string> = {
+  live: "live demo",
+  private: "private repo",
+  archived: "archived",
+};
+
+export function GithubFeed() {
+  const top = TOP_BUILD_SLUGS.map(
+    (slug) => projects.find((p) => p.slug === slug)!,
+  );
 
   return (
     <section className="section">
       <div className="container-max">
         <SectionHeader
           index="06"
-          eyebrow="GitHub"
+          eyebrow="Top Builds"
           title={
             <>
-              More on{" "}
-              <em className="font-display italic aurora-text">GitHub</em>.
+              The <em className="font-display italic aurora-text">top three</em>
+              ,
+              <br />
+              code & demos.
             </>
           }
-          description="Auto-fetched at build time — recent active repositories."
+          description="Source repos are private — production code stays internal — but the demos are live and the case studies tell the full story."
         />
 
-        {repos.length === 0 ? (
-          <div className="glass rounded-2xl p-8 text-center">
-            <p className="text-[var(--text-muted)]">
-              GitHub feed is currently unavailable. Visit{" "}
-              <Link
-                href="https://github.com/AhmadNassar03"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--accent)] hover:underline"
+        <div className="grid gap-3 md:grid-cols-3">
+          {top.map((p, i) => (
+            <FadeIn key={p.slug} delay={i * 0.05}>
+              <article
+                className={clsx(
+                  "glass relative h-full overflow-hidden rounded-2xl p-6 hover-lift",
+                )}
               >
-                github.com/AhmadNassar03
-              </Link>{" "}
-              directly.
-            </p>
-          </div>
-        ) : (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {repos.map((repo, i) => (
-              <FadeIn key={repo.name} delay={0.03 * i}>
-                <Link
-                  href={repo.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group glass block h-full rounded-2xl p-5 hover-lift"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-display text-lg text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-                      {repo.name}
-                    </h3>
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="h-3.5 w-3.5 text-[var(--text-faint)] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--accent)]"
-                      aria-hidden="true"
-                    >
-                      <path d="M14 3h7v7M10 14L21 3" />
-                    </svg>
-                  </div>
-                  {repo.description && (
-                    <p className="mt-2 line-clamp-2 text-sm text-[var(--text-muted)]">
-                      {repo.description}
-                    </p>
+                {/* accent wash */}
+                <div
+                  aria-hidden="true"
+                  className={clsx(
+                    "pointer-events-none absolute inset-0 opacity-60",
+                    accentBg[p.accent],
                   )}
-                  <div className="mt-4 flex items-center gap-4 text-[11px] font-mono text-[var(--text-faint)]">
-                    {repo.language && (
-                      <span className="flex items-center gap-1.5">
-                        <span
-                          aria-hidden="true"
-                          className="h-2 w-2 rounded-full"
-                          style={{
-                            backgroundColor:
-                              langColors[repo.language] ?? "var(--text-muted)",
-                          }}
-                        />
-                        {repo.language}
+                />
+
+                <div className="relative flex h-full flex-col">
+                  {/* status row */}
+                  <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
+                    <span
+                      aria-hidden="true"
+                      className={clsx(
+                        "h-1.5 w-1.5 rounded-full",
+                        statusDot[p.status],
+                      )}
+                    />
+                    {statusText[p.status]} · {p.year}
+                  </div>
+
+                  {/* title */}
+                  <h3 className="font-display mt-3 text-2xl text-[var(--text-primary)] md:text-3xl">
+                    {p.name}
+                  </h3>
+
+                  {/* tagline */}
+                  <p className="mt-2 text-sm text-[var(--text-secondary)]">
+                    {p.tagline}
+                  </p>
+
+                  {/* spacer */}
+                  <div className="flex-1" />
+
+                  {/* primary stack chips (max 3) */}
+                  <div className="mt-5 flex flex-wrap gap-1.5">
+                    {p.stack.slice(0, 3).map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-full border border-[var(--border-subtle)] bg-[var(--surface-2)]/40 px-2 py-0.5 text-[10px] font-mono text-[var(--text-secondary)]"
+                      >
+                        {s}
                       </span>
-                    )}
-                    {repo.stars > 0 && (
-                      <span className="flex items-center gap-1">
-                        ★ {repo.stars}
+                    ))}
+                    {p.stack.length > 3 && (
+                      <span className="rounded-full border border-[var(--border-subtle)] bg-[var(--surface-2)]/40 px-2 py-0.5 text-[10px] font-mono text-[var(--text-faint)]">
+                        +{p.stack.length - 3}
                       </span>
                     )}
                   </div>
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
-        )}
 
-        <div className="mt-8 text-center">
+                  {/* CTAs */}
+                  <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
+                    <Link
+                      href={`/projects/${p.slug}`}
+                      className="inline-flex items-center gap-1.5 text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors"
+                    >
+                      Case study
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="h-3 w-3"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M13 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                    {p.liveUrl && (
+                      <>
+                        <span className="text-[var(--text-faint)]">·</span>
+                        <Link
+                          href={p.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                        >
+                          Live
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className="h-3 w-3"
+                            aria-hidden="true"
+                          >
+                            <path d="M14 3h7v7M10 14L21 3" />
+                          </svg>
+                        </Link>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </article>
+            </FadeIn>
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
           <Link
-            href="https://github.com/AhmadNassar03"
+            href={profile.links.github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
           >
-            See all repos on GitHub
+            See public repos on GitHub
             <svg
               viewBox="0 0 24 24"
               fill="none"

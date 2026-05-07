@@ -74,7 +74,16 @@ export interface Project {
 export interface Certification {
   name: string;
   issuer: "Anthropic" | "Google" | "Coursera";
+  /** Original printed date if available, e.g. "April 5, 2026" */
+  issueDate: string;
+  /** Year as string for grouping/display */
   year: string;
+  /** Credential ID printed on certificate */
+  credentialId: string;
+  /** Public verify URL (skilljar / coursera) */
+  verifyUrl: string;
+  /** Featured = pin to top of grid (set on the strongest 6) */
+  featured?: boolean;
 }
 
 export interface Education {
@@ -109,7 +118,7 @@ export const profile: Profile = {
   nowStudying: "agentic eval harnesses · MCP servers · production LLM patterns",
   highlights: [
     { value: "4", label: "live AI products shipped" },
-    { value: "7", label: "AI certifications (Anthropic + Google)" },
+    { value: "26", label: "AI certifications earned" },
     { value: "65+", label: "production deployments" },
     { value: "3+", label: "years shipping" },
   ],
@@ -343,13 +352,226 @@ export const projects: Project[] = [
 ];
 
 export const certifications: Certification[] = [
-  { name: "Model Context Protocol: Advanced Topics", issuer: "Anthropic", year: "2026" },
-  { name: "Claude with Amazon Bedrock", issuer: "Anthropic", year: "2026" },
-  { name: "Claude with Google Cloud Vertex AI", issuer: "Anthropic", year: "2026" },
-  { name: "AI Capabilities and Limitations", issuer: "Anthropic", year: "2026" },
-  { name: "Google AI Essentials", issuer: "Google", year: "2026" },
-  { name: "Google Prompting Essentials", issuer: "Google", year: "2026" },
-  { name: "AI for App Building", issuer: "Coursera", year: "2026" },
+  // ─── Anthropic — featured (deep technical / MCP / production deployment) ───
+  {
+    name: "Model Context Protocol: Advanced Topics",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "p77kvpjxu9j2",
+    verifyUrl: "https://verify.skilljar.com/c/p77kvpjxu9j2",
+    featured: true,
+  },
+  {
+    name: "Introduction to Model Context Protocol",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "ncitxca35tvw",
+    verifyUrl: "https://verify.skilljar.com/c/ncitxca35tvw",
+    featured: true,
+  },
+  {
+    name: "Claude with Amazon Bedrock",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "h3giudgdd62a",
+    verifyUrl: "https://verify.skilljar.com/c/h3giudgdd62a",
+    featured: true,
+  },
+  {
+    name: "Claude with Google Vertex AI",
+    issuer: "Anthropic",
+    issueDate: "April 7, 2026",
+    year: "2026",
+    credentialId: "vraf8rzvu8eo",
+    verifyUrl: "https://verify.skilljar.com/c/vraf8rzvu8eo",
+    featured: true,
+  },
+  {
+    name: "Claude with the Anthropic API",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "mup9w8r7bji9",
+    verifyUrl: "https://verify.skilljar.com/c/mup9w8r7bji9",
+    featured: true,
+  },
+  {
+    name: "Claude Code in Action",
+    issuer: "Anthropic",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "uv8kuc4nqcwg",
+    verifyUrl: "https://verify.skilljar.com/c/uv8kuc4nqcwg",
+    featured: true,
+  },
+
+  // ─── Anthropic — agent / skills / fluency ───
+  {
+    name: "Introduction to subagents",
+    issuer: "Anthropic",
+    issueDate: "April 9, 2026",
+    year: "2026",
+    credentialId: "hym5ak39nz38",
+    verifyUrl: "https://verify.skilljar.com/c/hym5ak39nz38",
+  },
+  {
+    name: "Introduction to agent skills",
+    issuer: "Anthropic",
+    issueDate: "April 9, 2026",
+    year: "2026",
+    credentialId: "o8xe6wj2otoq",
+    verifyUrl: "https://verify.skilljar.com/c/o8xe6wj2otoq",
+  },
+  {
+    name: "Introduction to Claude Cowork",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "vft22o735j28",
+    verifyUrl: "https://verify.skilljar.com/c/vft22o735j28",
+  },
+  {
+    name: "Claude 101",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "mfwgth38qr8i",
+    verifyUrl: "https://verify.skilljar.com/c/mfwgth38qr8i",
+  },
+  {
+    name: "AI Fluency: Framework & Foundations",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "vi7cjipiemzv",
+    verifyUrl: "https://verify.skilljar.com/c/vi7cjipiemzv",
+  },
+  {
+    name: "AI Fluency: AI Capabilities & Limitations",
+    issuer: "Anthropic",
+    issueDate: "April 9, 2026",
+    year: "2026",
+    credentialId: "nzjx254g4k9o",
+    verifyUrl: "https://verify.skilljar.com/c/nzjx254g4k9o",
+  },
+  {
+    name: "Teaching the AI Fluency Framework",
+    issuer: "Anthropic",
+    issueDate: "April 9, 2026",
+    year: "2026",
+    credentialId: "ymohyowg9uv5",
+    verifyUrl: "https://verify.skilljar.com/c/ymohyowg9uv5",
+  },
+  {
+    name: "AI Fluency for educators",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "q2cpykm5bay3",
+    verifyUrl: "https://verify.skilljar.com/c/q2cpykm5bay3",
+  },
+  {
+    name: "AI Fluency for students",
+    issuer: "Anthropic",
+    issueDate: "April 5, 2026",
+    year: "2026",
+    credentialId: "nzazd5muf377",
+    verifyUrl: "https://verify.skilljar.com/c/nzazd5muf377",
+  },
+  {
+    name: "AI Fluency for nonprofits",
+    issuer: "Anthropic",
+    issueDate: "April 9, 2026",
+    year: "2026",
+    credentialId: "kvzj96q6utx8",
+    verifyUrl: "https://verify.skilljar.com/c/kvzj96q6utx8",
+  },
+
+  // ─── Google (delivered via Coursera) — featured AI builders ───
+  {
+    name: "AI for App Building",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "B9HA4UF7MSTN",
+    verifyUrl: "https://coursera.org/verify/B9HA4UF7MSTN",
+    featured: true,
+  },
+  {
+    name: "AI for Data Analysis",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "AX55378BLRVL",
+    verifyUrl: "https://coursera.org/verify/AX55378BLRVL",
+  },
+  {
+    name: "AI for Content Creation",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "4Y9P0L2TBCR6",
+    verifyUrl: "https://coursera.org/verify/4Y9P0L2TBCR6",
+  },
+  {
+    name: "AI for Research and Insights",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "S6LKQRSNMH8X",
+    verifyUrl: "https://coursera.org/verify/S6LKQRSNMH8X",
+  },
+  {
+    name: "AI for Brainstorming and Planning",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "TFQ5M63L533B",
+    verifyUrl: "https://coursera.org/verify/TFQ5M63L533B",
+  },
+  {
+    name: "AI for Writing and Communicating",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "DC8FON9H7836",
+    verifyUrl: "https://coursera.org/verify/DC8FON9H7836",
+  },
+  {
+    name: "Use AI as a Creative or Expert Partner",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "D98CYYAFMXXE",
+    verifyUrl: "https://coursera.org/verify/D98CYYAFMXXE",
+  },
+  {
+    name: "Design Prompts for Everyday Work Tasks",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "PDW2GZ5ZM2M7",
+    verifyUrl: "https://coursera.org/verify/PDW2GZ5ZM2M7",
+  },
+  {
+    name: "Speed Up Data Analysis and Presentation Building",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "QIAVURZ00IP8",
+    verifyUrl: "https://coursera.org/verify/QIAVURZ00IP8",
+  },
+  {
+    name: "Start Writing Prompts like a Pro",
+    issuer: "Google",
+    issueDate: "March 31, 2026",
+    year: "2026",
+    credentialId: "XJ1VZRI8M5R9",
+    verifyUrl: "https://coursera.org/verify/XJ1VZRI8M5R9",
+  },
 ];
 
 export const education: Education = {
