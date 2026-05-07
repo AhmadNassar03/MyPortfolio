@@ -12,4 +12,3 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Motion**: gated globally by `<MotionConfig reducedMotion="user">` in `MotionRoot`. Don't call `useReducedMotion()` per component — that caused SSR hydration issues.
 - **JSON-LD**: scripts go inside `<body>` (not `<head>`). React 19 warns when scripts are inside client components.
 - **Next.js 16 async params**: `params: Promise<{slug: string}>`, then `await params`. Same for `searchParams`.
-- **Path with space**: project lives at `H:\My Portfolio\` (with space). Always quote in shell commands. Package name in `package.json` is `ahmad-portfolio` (URL-safe).
