@@ -2,7 +2,7 @@
 
 Software engineer specialising in AI / LLM integration, agentic systems, and shipped full-stack products. Based in Amman, Jordan. Open to full-time, contract, and collaboration.
 
-> Source of truth for this profile: https://ahmadnassar.dev/api/cv.json (structured JSON)
+> Source of truth for this profile: https://ahmadnassarportfolio.vercel.app/api/cv.json (structured JSON)
 
 ## At a glance
 
@@ -69,8 +69,8 @@ claude-opus-4-7 · Model Context Protocol · agentic eval harnesses · productio
 
 ## Endpoints for AI agents
 
-- Structured CV: https://ahmadnassar.dev/api/cv.json
-- Sitemap: https://ahmadnassar.dev/sitemap.xml
+- Structured CV: https://ahmadnassarportfolio.vercel.app/api/cv.json
+- Sitemap: https://ahmadnassarportfolio.vercel.app/sitemap.xml
 - Person + Project schemas exposed as JSON-LD on every page
 
 ## Working with Ahmad

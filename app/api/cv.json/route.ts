@@ -24,7 +24,7 @@ export const revalidate = 86400;
 export async function GET() {
   return NextResponse.json(
     {
-      $schema: "https://ahmadnassar.dev/api/cv.schema.json",
+      $schema: "https://ahmadnassarportfolio.vercel.app/api/cv.schema.json",
       generatedAt: new Date().toISOString(),
       profile,
       skills,

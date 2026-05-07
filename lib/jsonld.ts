@@ -7,7 +7,7 @@
 
 import { profile, projects, certifications, education, experience } from "@/content/cv";
 
-export const SITE_URL = "https://ahmadnassar.dev";
+export const SITE_URL = "https://ahmadnassarportfolio.vercel.app";
 
 export function personSchema() {
   return {

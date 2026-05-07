@@ -107,6 +107,7 @@ export const profile: Profile = {
   links: {
     github: "https://github.com/AhmadNassar03",
     linkedin: "https://linkedin.com/in/ahmad-nassar-27275123b",
+    website: "https://ahmadnassarportfolio.vercel.app",
   },
   bio: "Software Engineering graduate with a genuine passion for AI and applied machine learning. Solid backend and full-stack foundation in ASP.NET Core, Node.js, Next.js, and SQL — now channelled into building real AI-powered products. Shipped multiple live AI SaaS applications integrating LLMs (Groq Llama-3, Gemini, Claude/Anthropic), real-time computer-vision pipelines with TensorFlow.js and YOLOv8, and agentic automation workflows via n8n and MCP. Certified in AI by Google and Anthropic.",
   currentlyExploring: [
