@@ -1,0 +1,146 @@
+/* ============================================================
+   Aurora Lab — Design Tokens
+   Editorial AI-research aesthetic. Dark default, light companion.
+   ============================================================ */
+
+:root {
+  /* ── Surfaces (dark default) ─────────────────────────── */
+  --surface-0: oklch(11% 0.015 280);
+  --surface-1: oklch(14% 0.02 280);
+  --surface-2: oklch(18% 0.025 280);
+  --surface-3: oklch(22% 0.028 280);
+  --surface-elevated: oklch(20% 0.03 280 / 0.6);
+
+  /* ── Text ────────────────────────────────────────────── */
+  --text-primary: oklch(96% 0.01 280);
+  --text-secondary: oklch(82% 0.015 280);
+  --text-muted: oklch(64% 0.02 280);
+  --text-faint: oklch(48% 0.02 280);
+
+  /* ── Aurora gradient stops ───────────────────────────── */
+  --aurora-1: oklch(60% 0.22 290);    /* deep violet */
+  --aurora-2: oklch(75% 0.16 200);    /* cyan */
+  --aurora-3: oklch(82% 0.12 350);    /* soft pink */
+  --aurora-4: oklch(70% 0.18 260);    /* periwinkle bridge */
+
+  /* ── Accents ─────────────────────────────────────────── */
+  --accent: oklch(75% 0.16 200);
+  --accent-hover: oklch(82% 0.18 200);
+  --accent-muted: oklch(60% 0.12 200);
+  --accent-glow: oklch(75% 0.16 200 / 0.35);
+
+  /* ── Semantic ────────────────────────────────────────── */
+  --border-subtle: oklch(100% 0 0 / 0.06);
+  --border-default: oklch(100% 0 0 / 0.1);
+  --border-strong: oklch(100% 0 0 / 0.18);
+  --border-aurora: linear-gradient(
+    135deg,
+    oklch(60% 0.22 290 / 0.4),
+    oklch(75% 0.16 200 / 0.3),
+    oklch(82% 0.12 350 / 0.4)
+  );
+
+  /* ── Type scale (clamp for fluid responsive) ─────────── */
+  --text-xs: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --text-sm: clamp(0.85rem, 0.82rem + 0.15vw, 0.92rem);
+  --text-base: clamp(1rem, 0.95rem + 0.2vw, 1.08rem);
+  --text-lg: clamp(1.18rem, 1.1rem + 0.4vw, 1.32rem);
+  --text-xl: clamp(1.4rem, 1.25rem + 0.7vw, 1.65rem);
+  --text-2xl: clamp(1.85rem, 1.55rem + 1.4vw, 2.4rem);
+  --text-3xl: clamp(2.4rem, 1.9rem + 2.4vw, 3.4rem);
+  --text-display: clamp(3rem, 2rem + 4.5vw, 5.5rem);
+  --text-hero: clamp(3.5rem, 2rem + 7vw, 7.5rem);
+
+  /* ── Spacing scale ───────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-section: clamp(4rem, 3rem + 5vw, 9rem);
+
+  /* ── Layout ──────────────────────────────────────────── */
+  --container-max: 1280px;
+  --container-narrow: 880px;
+  --container-prose: 680px;
+
+  /* ── Radius ──────────────────────────────────────────── */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-full: 999px;
+
+  /* ── Shadows + glow ──────────────────────────────────── */
+  --shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.4);
+  --shadow-md: 0 8px 24px -8px oklch(0% 0 0 / 0.5);
+  --shadow-lg: 0 24px 48px -16px oklch(0% 0 0 / 0.6);
+  --shadow-aurora: 0 0 60px -10px oklch(75% 0.16 200 / 0.35);
+
+  /* ── Motion ──────────────────────────────────────────── */
+  --duration-instant: 100ms;
+  --duration-fast: 180ms;
+  --duration-normal: 320ms;
+  --duration-slow: 600ms;
+  --duration-aurora: 24s;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── Glass ───────────────────────────────────────────── */
+  --glass-blur: 20px;
+  --glass-bg: oklch(20% 0.03 280 / 0.55);
+  --glass-border: oklch(100% 0 0 / 0.08);
+
+  /* ── Z-layer ─────────────────────────────────────────── */
+  --z-base: 1;
+  --z-aurora: 0;
+  --z-noise: 1;
+  --z-content: 10;
+  --z-nav: 50;
+  --z-modal: 100;
+}
+
+/* ============================================================
+   Light theme (companion, not afterthought)
+   ============================================================ */
+html[data-theme="light"],
+.light {
+  --surface-0: oklch(98% 0.005 90);
+  --surface-1: oklch(96% 0.008 90);
+  --surface-2: oklch(93% 0.01 90);
+  --surface-3: oklch(89% 0.012 90);
+  --surface-elevated: oklch(98% 0.005 90 / 0.7);
+
+  --text-primary: oklch(18% 0.02 280);
+  --text-secondary: oklch(32% 0.025 280);
+  --text-muted: oklch(48% 0.025 280);
+  --text-faint: oklch(62% 0.02 280);
+
+  --aurora-1: oklch(58% 0.18 290);
+  --aurora-2: oklch(62% 0.14 200);
+  --aurora-3: oklch(72% 0.12 350);
+  --aurora-4: oklch(60% 0.16 260);
+
+  --accent: oklch(48% 0.18 270);
+  --accent-hover: oklch(42% 0.2 270);
+  --accent-muted: oklch(60% 0.12 270);
+  --accent-glow: oklch(48% 0.18 270 / 0.25);
+
+  --border-subtle: oklch(0% 0 0 / 0.06);
+  --border-default: oklch(0% 0 0 / 0.1);
+  --border-strong: oklch(0% 0 0 / 0.18);
+
+  --shadow-sm: 0 1px 2px 0 oklch(20% 0.02 280 / 0.08);
+  --shadow-md: 0 8px 24px -8px oklch(20% 0.02 280 / 0.12);
+  --shadow-lg: 0 24px 48px -16px oklch(20% 0.02 280 / 0.18);
+  --shadow-aurora: 0 0 60px -10px oklch(58% 0.18 290 / 0.25);
+
+  --glass-bg: oklch(98% 0.005 90 / 0.7);
+  --glass-border: oklch(0% 0 0 / 0.08);
+}

@@ -1,0 +1,63 @@
+# Ahmad Nassar — AI-Focused Full Stack Engineer
+
+Software engineer specialising in AI / LLM integration, agentic systems, and shipped full-stack products. Based in Amman, Jordan. Open to full-time, contract, and collaboration.
+
+> Source of truth for this profile: https://ahmadnassar.dev/api/cv.json (structured JSON)
+
+## At a glance
+
+- **Role:** Software Engineer · AI-Focused Full Stack Developer
+- **Education:** B.Sc. Software Engineering, Al-Zaytoonah University of Jordan (2025)
+- **Location:** Amman, Jordan · open to remote
+- **Languages:** Arabic (native), English (professional)
+- **Email:** ahmad.nassar5903@gmail.com
+- **GitHub:** https://github.com/AhmadNassar03
+- **LinkedIn:** https://linkedin.com/in/ahmad-nassar-27275123b
+
+## Primary stack
+
+- **AI / LLM:** Groq Llama-3.3-70b · Gemini 2.0 Flash · Claude (Anthropic) · OpenAI · MCP (Model Context Protocol) · agentic pipelines · prompt engineering · n8n
+- **Backend:** ASP.NET Core · Node.js · FastAPI · REST · WebSockets
+- **Frontend:** Next.js (14+) · TypeScript · React · Tailwind CSS
+- **Data:** PostgreSQL · SQL Server · MySQL · Oracle · Supabase · Prisma · Drizzle
+- **Cloud / DevOps:** Vercel · Railway · Docker · GitHub Actions · CI/CD
+- **CV / ML:** TensorFlow.js · YOLOv8
+
+## Featured projects
+
+- **OmniAgent** — Production omnichannel AI SaaS routing customer conversations through an LLM-powered agent (Groq Llama-3.3-70b primary, Gemini 2.0 Flash fallback), multi-tenant Supabase, n8n orchestration. Live: https://omnichannel-saas-zeta.vercel.app
+- **LeadGrade** — AI lead scoring SaaS for debt-relief intake. TCPA + FTC TSR compliance hard stops, Gemini semantic 0–100 scoring, role-based dashboards, Recharts analytics. Live: https://lead-scoring-rho.vercel.app
+- **WorkForce AI** — Real-time workplace monitoring with TensorFlow.js + YOLOv8 inference, MJPEG ingest, WebSocket dashboard.
+- **SiyanahJo** — Vehicle maintenance booking platform (graduation project). ASP.NET Core + SQL Server + Flutter.
+
+## Experience
+
+- **Orange Jordan** — ASP.NET Developer (Mar–Jun 2025): enterprise web apps in ASP.NET Core + SQL Server, RESTful APIs, Agile/Scrum.
+- **Future Advanced Internet Solutions** — ASP.NET Developer Intern (Sep–Dec 2024): MVC + Entity Framework, query optimisation, role-based auth.
+- **SHAI for AI** — Full Stack Developer Intern (May–Sep 2022): JavaScript + C# full-stack, third-party API integration in an AI product environment.
+
+## AI certifications (2026)
+
+- Anthropic — Model Context Protocol: Advanced Topics
+- Anthropic — Claude with Amazon Bedrock
+- Anthropic — Claude with Google Cloud Vertex AI
+- Anthropic — AI Capabilities and Limitations
+- Google — Google AI Essentials
+- Google — Google Prompting Essentials
+- Coursera — AI for App Building
+
+## Currently exploring
+
+claude-opus-4-7 · Model Context Protocol · agentic eval harnesses · production LLM patterns
+
+## Endpoints for AI agents
+
+- Structured CV: https://ahmadnassar.dev/api/cv.json
+- Sitemap: https://ahmadnassar.dev/sitemap.xml
+- Person + Project schemas exposed as JSON-LD on every page
+
+## Working with Ahmad
+
+Best fit: AI engineering, LLM integration, full-stack roles where the team values shipping over experimentation. Strong on backend fundamentals (ASP.NET, Node.js, Postgres) plus modern AI tooling (Claude, Groq, MCP). Comfortable owning a feature end-to-end.
+
+Reach out: ahmad.nassar5903@gmail.com
