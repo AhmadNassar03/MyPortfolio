@@ -257,6 +257,7 @@ export const projects: Project[] = [
       "Fly.io",
       "Vercel",
     ],
+    liveUrl: "https://ai-voice-agent-five-kappa.vercel.app",
     repoUrl: "https://github.com/AhmadNassar03",
     highlights: [
       "Real-time voice pipeline: live call audio streamed through Twilio, Deepgram STT, a function-calling LLM, and ElevenLabs TTS",
