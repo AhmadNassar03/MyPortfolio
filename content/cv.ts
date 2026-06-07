@@ -118,7 +118,7 @@ export const profile: Profile = {
   ],
   nowStudying: "agentic eval harnesses · MCP servers · production LLM patterns",
   highlights: [
-    { value: "4", label: "live AI products shipped" },
+    { value: "5", label: "live AI products shipped" },
     { value: "26", label: "AI certifications earned" },
     { value: "65+", label: "production deployments" },
     { value: "3+", label: "years shipping" },
@@ -239,6 +239,38 @@ export const experience: Experience[] = [
 
 export const projects: Project[] = [
   {
+    slug: "sawt",
+    name: "Sawt",
+    tagline: "Arabic AI voice agents for MENA — real phone calls, real-time",
+    description:
+      "Production multi-tenant SaaS where AI voice agents answer and place phone calls in Arabic dialects (Levantine, Khaleeji, Egyptian, MSA) to handle bookings, orders, and support 24/7.",
+    longDescription:
+      "Sawt is a production, multi-tenant voice-AI platform built for the MENA market: AI agents hold real phone conversations in Arabic dialects to take bookings, answer questions, capture leads, and hand off to humans. The core is a real-time media bridge that streams live call audio through Twilio, Deepgram speech-to-text, a function-calling LLM, and ElevenLabs speech synthesis — engineered to cut cost per call-minute by roughly 57% versus the OpenAI Realtime API while staying low-latency and natural. On top sits the full SaaS: 14+ agent tools and integrations (calendars, CRM, WhatsApp, Stripe payments), a RAG knowledge base, organization and role-based access control, usage-based billing (Paddle / HyperPay), and automated push-to-deploy CI/CD across Vercel and Fly.io.",
+    stack: [
+      "Next.js 16",
+      "FastAPI",
+      "Supabase (pgvector)",
+      "Twilio",
+      "OpenAI Realtime",
+      "Deepgram",
+      "ElevenLabs",
+      "Fly.io",
+      "Vercel",
+    ],
+    repoUrl: "https://github.com/AhmadNassar03",
+    highlights: [
+      "Real-time voice pipeline: live call audio streamed through Twilio, Deepgram STT, a function-calling LLM, and ElevenLabs TTS",
+      "~57% lower cost per call-minute versus the OpenAI Realtime API",
+      "Arabic dialect support — Levantine, Khaleeji, Egyptian, and MSA",
+      "14+ agent tools and integrations: calendars, CRM, WhatsApp, Stripe payments, plus a RAG knowledge base",
+      "Multi-tenant org / role-based access, usage-based billing (Paddle / HyperPay), push-to-deploy CI/CD on Vercel + Fly.io",
+    ],
+    bentoSize: "feature",
+    status: "live",
+    year: "2026",
+    accent: "violet",
+  },
+  {
     slug: "omniagent",
     name: "OmniAgent",
     tagline: "Omnichannel AI SaaS — LLM-routed customer conversations",
@@ -265,7 +297,7 @@ export const projects: Project[] = [
       "Real-time conversation handling via WebSockets",
       "n8n workflow orchestration for automated actions",
     ],
-    bentoSize: "feature",
+    bentoSize: "default",
     status: "live",
     year: "2025",
     accent: "violet",
@@ -295,7 +327,7 @@ export const projects: Project[] = [
       "Source performance analytics with Recharts visualisations",
       "White-label configuration for multi-client deployment",
     ],
-    bentoSize: "wide",
+    bentoSize: "default",
     status: "live",
     year: "2025",
     accent: "cyan",
