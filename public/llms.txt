@@ -37,6 +37,7 @@ Software engineer specialising in AI / LLM integration, agentic systems, and shi
 
 ## Experience
 
+- **Sawt (sawtai.app)** — Founder & AI Engineer (May 2026–present): built a multi-tenant AI voice + chat agent SaaS for MENA solo; Gemini Live / Deepgram-ElevenLabs / OpenAI Realtime voice engines with fallback (~83% lower voice cost on Gemini Live), Arabic-dialect WER evaluation harness, LLM guardrails, omnichannel messaging, 1,790+ pytest tests.
 - **Orange Digital Center (Orange Jordan)** — Software Engineering Intern (Mar–Jun 2025): built the SiyanahJo graduation project on-site with mentorship from Orange engineers (ASP.NET Core, SQL Server).
 - **Future Advanced Internet Solutions** — .NET Developer Intern (Sep–Dec 2024): mobile app and website for Caesar Pizza in ASP.NET Core / C#, Agile team.
 - **SHAI for AI** — Full-Stack Development Trainee (May–Sep 2022): 90-hour full-stack program building web apps with React, JavaScript and Node.js.

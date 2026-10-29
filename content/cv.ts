@@ -245,6 +245,20 @@ export const skills: SkillGroup[] = [
 
 export const experience: Experience[] = [
   {
+    role: "Founder & AI Engineer",
+    company: "Sawt (sawtai.app)",
+    start: "May 2026",
+    end: "Present",
+    location: "Amman, Jordan",
+    bullets: [
+      "Built Sawt solo from idea to live product: a multi-tenant AI voice and chat agent SaaS for MENA businesses, answering calls and chats in four Arabic dialects, English and French.",
+      "Architected real-time voice engines over Twilio Media Streams and WebSockets — Gemini Live speech-to-speech, a Deepgram → LLM → ElevenLabs cascade, and OpenAI Realtime — with automatic fallback; Gemini Live cut voice cost by about 83%.",
+      "Built a word-error-rate evaluation harness across Levantine, Khaleeji, Egyptian and MSA Arabic, and LLM guardrails that flag an agent claiming an action (like a booking) without a matching tool call.",
+      "Delivered omnichannel messaging on WhatsApp, Instagram and Messenger plus an embeddable voice and chat widget, grounded by a pgvector RAG knowledge base, with function calling for bookings, orders, payments, transfers and MCP tools.",
+      "Shipped production SaaS foundations backed by 1,790+ pytest tests and a CI gate (ruff, mypy): RBAC, row-level security on every table, TOTP MFA, signed webhooks, usage-based billing, a trilingual RTL UI and Sentry monitoring.",
+    ],
+  },
+  {
     role: "Software Engineering Intern",
     company: "Orange Digital Center (Orange Jordan)",
     start: "March 2025",
