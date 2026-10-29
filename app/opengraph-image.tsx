@@ -119,7 +119,7 @@ export default async function OpengraphImage() {
               fontStyle: "italic",
             }}
           >
-            ahmadnassarportfolio.vercel.app
+            ahmadnassar.sawtai.app
           </div>
         </div>
       </div>
