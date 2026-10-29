@@ -10,14 +10,14 @@ export function SawtSection() {
           eyebrow="Flagship · Sawt صوت"
           title={
             <>
-              An AI that{" "}
+              An AI receptionist that{" "}
               <em className="font-display italic aurora-text">
-                picks up the phone
+                never misses
               </em>
-              <br />— in your dialect.
+              <br />a customer — in their dialect.
             </>
           }
-          description="Sawt runs real phone calls for clinics, restaurants and real-estate teams across the Gulf and Levant. Switch dialects, flip the voice engine, and watch each stage of the live pipeline fire as the call plays."
+          description="Sawt answers a business's calls and chats — website, WhatsApp, Instagram, Messenger and phone — in the customer's own dialect. Switch dialects, flip between a phone call and a WhatsApp chat, and watch each stage fire as the conversation plays."
         />
         <SawtShowcase />
       </div>

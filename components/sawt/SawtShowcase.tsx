@@ -8,36 +8,32 @@ import { getProject } from "@/content/cv";
 import { CountUp } from "@/components/motion/CountUp";
 import { callScript, dialects, type CallEvent, type Dialect } from "./callScript";
 
-type Engine = "pipeline" | "realtime";
-type StageId = "caller" | "twilio" | "stt" | "llm" | "tts" | "realtime";
+type Engine = "phone" | "whatsapp";
+type StageId = "customer" | "transport" | "model" | "tools";
 
 const stages: Record<Engine, { id: StageId; name: string; role: string }[]> = {
-  pipeline: [
-    { id: "caller", name: "Caller", role: "Real phone line, any network" },
-    { id: "twilio", name: "Twilio MediaStream", role: "μ-law audio over WebSocket" },
-    { id: "stt", name: "Deepgram STT", role: "Streaming Arabic transcription" },
-    { id: "llm", name: "LLM + tools", role: "Function calling, RAG, memory" },
-    { id: "tts", name: "ElevenLabs TTS", role: "Dialect voice, streamed back" },
+  phone: [
+    { id: "customer", name: "Caller", role: "Phone via the business's own PBX (SIP), or the website widget" },
+    { id: "transport", name: "Twilio Media Streams", role: "8 kHz μ-law audio over a WebSocket bridge" },
+    { id: "model", name: "Gemini Live", role: "Speech to speech, locked to the caller's language" },
+    { id: "tools", name: "Agent tools", role: "Calendar, RAG over documents, leads, transfer" },
   ],
-  realtime: [
-    { id: "caller", name: "Caller", role: "Real phone line, any network" },
-    { id: "twilio", name: "Twilio MediaStream", role: "μ-law audio over WebSocket" },
-    { id: "realtime", name: "OpenAI Realtime", role: "Speech-to-speech, premium tier" },
+  whatsapp: [
+    { id: "customer", name: "Customer", role: "WhatsApp, Instagram, Messenger or site chat" },
+    { id: "transport", name: "Meta webhooks", role: "Text, photos and voice notes, answered in order" },
+    { id: "model", name: "Gemini 2.5 Flash", role: "Replies in the customer's dialect" },
+    { id: "tools", name: "Agent tools", role: "Same tools as calls — no claimed action without a result" },
   ],
 };
 
-function activeStages(ev: CallEvent | undefined, engine: Engine): StageId[] {
+function activeStages(ev: CallEvent | undefined): StageId[] {
   if (!ev) return [];
   const map: Record<CallEvent["kind"], StageId[]> = {
-    caller: ["caller", "twilio", "stt"],
-    tool: ["llm"],
-    agent: ["llm", "tts", "twilio", "caller"],
+    caller: ["customer", "transport", "model"],
+    tool: ["model", "tools"],
+    agent: ["model", "transport", "customer"],
   };
-  const ids = map[ev.kind];
-  if (engine === "pipeline") return ids;
-  return Array.from(
-    new Set(ids.map((s) => (s === "stt" || s === "llm" || s === "tts" ? "realtime" : s))),
-  ) as StageId[];
+  return map[ev.kind];
 }
 
 function Waveform({ speaker }: { speaker: "caller" | "agent" | null }) {
@@ -79,7 +75,7 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
   const inView = useInView(rootRef, { once: true, margin: "-120px" });
 
   const [dialect, setDialect] = useState<Dialect>("levantine");
-  const [engine, setEngine] = useState<Engine>("pipeline");
+  const [engine, setEngine] = useState<Engine>("phone");
   const [step, setStep] = useState(-1); // index of event currently playing
   const [run, setRun] = useState(0); // bumps on every (re)start
   const [elapsed, setElapsed] = useState(0);
@@ -89,7 +85,7 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
   const script = useMemo(() => callScript(dialect), [dialect]);
   const playing = step >= 0 && step < script.length;
   const current = playing ? script[step] : undefined;
-  const lit = activeStages(current, engine);
+  const lit = activeStages(current);
   const speaker =
     current && current.kind !== "tool" ? current.kind : null;
 
@@ -208,8 +204,10 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
                 )}
               />
             </span>
-            {playing ? "live call" : finished ? "call ended" : "ready"} · clinic
-            receptionist · {mmss}
+            {engine === "phone"
+              ? playing ? "live call" : finished ? "call ended" : "ready"
+              : playing ? "whatsapp chat" : finished ? "chat resolved" : "ready"}{" "}
+            · clinic receptionist · {mmss}
           </div>
           <button
             type="button"
@@ -219,12 +217,19 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
             <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3" aria-hidden="true">
               <path d="M7 4v16l13-8z" />
             </svg>
-            {playing ? "Restart" : finished ? "Replay call" : "Play call"}
+            {playing ? "Restart" : finished ? "Replay" : "Play"}
           </button>
         </div>
 
         <div className="px-5 py-3">
-          <Waveform speaker={speaker} />
+          {engine === "phone" ? (
+            <Waveform speaker={speaker} />
+          ) : (
+            <p className="flex h-10 items-center justify-center gap-2 font-mono text-[11px] text-[var(--text-muted)]">
+              <span className="h-2 w-2 rounded-full bg-[oklch(72%_0.18_145)]" aria-hidden="true" />
+              {speaker === "agent" ? "Sawt is typing…" : speaker === "caller" ? "Customer is typing…" : "WhatsApp Business"}
+            </p>
+          )}
         </div>
 
         {/* transcript */}
@@ -270,7 +275,11 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
                     )}
                   >
                     <p className="mb-1 font-mono text-[9px] uppercase tracking-widest text-[var(--text-faint)]">
-                      {ev.kind === "agent" ? "Sawt agent" : "Caller"}
+                      {ev.kind === "agent"
+                        ? "Sawt agent"
+                        : engine === "phone"
+                          ? "Caller"
+                          : "Customer"}
                     </p>
                     <p
                       dir="rtl"
@@ -319,15 +328,18 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
             </p>
             <div
               role="tablist"
-              aria-label="Voice engine"
+              aria-label="Channel"
               className="flex rounded-full bg-[var(--surface-2)]/70 p-1 text-[11px]"
             >
-              {(["pipeline", "realtime"] as const).map((e) => (
+              {(["phone", "whatsapp"] as const).map((e) => (
                 <button
                   key={e}
                   role="tab"
                   aria-selected={engine === e}
-                  onClick={() => setEngine(e)}
+                  onClick={() => {
+                    setEngine(e);
+                    play();
+                  }}
                   className={clsx(
                     "relative rounded-full px-3 py-1 transition-colors",
                     engine === e
@@ -343,7 +355,7 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
                     />
                   )}
                   <span className="relative">
-                    {e === "pipeline" ? "Sawt pipeline" : "OpenAI Realtime"}
+                    {e === "phone" ? "Phone call" : "WhatsApp chat"}
                   </span>
                 </button>
               ))}
@@ -402,20 +414,20 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
             </AnimatePresence>
           </ol>
 
-          {/* relative cost */}
+          {/* time to answer */}
           <div className="mt-6 border-t border-[var(--border-subtle)] pt-5">
             <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
-              cost per call-minute · relative
+              time to answer · Gemini Live
             </p>
             {[
-              { id: "realtime" as const, label: "OpenAI Realtime", pct: 100 },
-              { id: "pipeline" as const, label: "Sawt pipeline", pct: 43 },
+              { id: "before" as const, label: "First version", value: "3.7 s", pct: 100 },
+              { id: "after" as const, label: "After tuning", value: "1.4 s", pct: 38 },
             ].map((row) => (
               <div key={row.id} className="mb-2 last:mb-0">
                 <div className="mb-1 flex justify-between text-xs">
                   <span
                     className={
-                      engine === row.id
+                      row.id === "after"
                         ? "text-[var(--text-primary)]"
                         : "text-[var(--text-muted)]"
                     }
@@ -423,14 +435,14 @@ export function SawtShowcase({ compact = false }: { compact?: boolean }) {
                     {row.label}
                   </span>
                   <span className="font-mono text-[var(--text-muted)]">
-                    {row.pct === 100 ? "baseline" : "−57%"}
+                    {row.value}
                   </span>
                 </div>
                 <div className="h-2 overflow-hidden rounded-full bg-[var(--surface-2)]">
                   <motion.div
                     className={clsx(
                       "h-full rounded-full",
-                      row.id === "pipeline"
+                      row.id === "after"
                         ? "bg-[linear-gradient(90deg,var(--aurora-1),var(--aurora-2))]"
                         : "bg-[var(--text-faint)]",
                     )}

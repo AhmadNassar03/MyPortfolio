@@ -144,6 +144,41 @@ export function ProjectCard({ project, className, feature = false }: Props) {
           </dl>
         )}
 
+        {feature && (
+          <>
+            {/* live signal strip */}
+            <div
+              aria-hidden="true"
+              className="mt-8 flex h-12 items-center gap-[3px] overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-2)]/40 px-4"
+            >
+              {Array.from({ length: 64 }, (_, i) => (
+                <span
+                  key={i}
+                  className="wave-bar min-w-[2px] flex-1 rounded-full bg-[linear-gradient(to_top,var(--aurora-1),var(--aurora-2))]"
+                  style={{
+                    height: `${30 + 70 * Math.abs(Math.sin(i * 0.55))}%`,
+                    animationDelay: `${(i % 11) * -0.1}s`,
+                  }}
+                />
+              ))}
+            </div>
+
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              {project.highlights.slice(0, 4).map((h, i) => (
+                <li
+                  key={h}
+                  className="flex gap-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-2)]/30 p-3.5 text-sm leading-snug text-[var(--text-secondary)]"
+                >
+                  <span className="font-mono text-[10px] text-[var(--accent)]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-pretty">{h}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
         <div className="flex-1" />
 
         {/* Stack pills */}

@@ -61,7 +61,7 @@ export function Contact() {
                 <MagneticButton
                   href="/ahmad-nassar-cv.pdf"
                   variant="outline"
-                  external
+                  download="Ahmad-Nassar-CV.pdf"
                 >
                   <svg
                     viewBox="0 0 24 24"

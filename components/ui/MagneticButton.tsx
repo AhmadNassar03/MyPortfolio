@@ -14,6 +14,8 @@ type Props = {
   className?: string;
   external?: boolean;
   ariaLabel?: string;
+  /** Render a plain <a download> (static files: Next Link would client-route them). */
+  download?: string;
 };
 
 export function MagneticButton({
@@ -24,6 +26,7 @@ export function MagneticButton({
   className,
   external = false,
   ariaLabel,
+  download,
 }: Props) {
   const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
   const x = useMotionValue(0);
@@ -66,6 +69,27 @@ export function MagneticButton({
       )}
     </>
   );
+
+  if (href && download) {
+    return (
+      <motion.span
+        style={{ x: sx, y: sy }}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        className="inline-block"
+      >
+        <a
+          ref={ref as React.RefObject<HTMLAnchorElement>}
+          href={href}
+          download={download}
+          aria-label={ariaLabel}
+          className={clsx(styles, "group")}
+        >
+          {inner}
+        </a>
+      </motion.span>
+    );
+  }
 
   if (href) {
     const externalProps = external

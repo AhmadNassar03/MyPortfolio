@@ -93,7 +93,7 @@ export function CommandPalette() {
       {
         id: "sawt-live",
         label: "Open Sawt live",
-        hint: "ai-voice-agent-five-kappa.vercel.app",
+        hint: "sawtai.app",
         group: "Actions",
         run: () =>
           window.open(
@@ -107,7 +107,12 @@ export function CommandPalette() {
         label: "Download CV",
         hint: "PDF",
         group: "Actions",
-        run: () => window.open("/ahmad-nassar-cv.pdf", "_blank", "noopener"),
+        run: () => {
+          const a = document.createElement("a");
+          a.href = "/ahmad-nassar-cv.pdf";
+          a.download = "Ahmad-Nassar-CV.pdf";
+          a.click();
+        },
       },
       {
         id: "github",

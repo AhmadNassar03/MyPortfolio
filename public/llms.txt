@@ -17,7 +17,7 @@ Software engineer specialising in AI / LLM integration, agentic systems, and shi
 ## Primary stack
 
 - **AI / LLM:** Claude (Anthropic) · Gemini · Groq Llama-3.3-70b · OpenAI (incl. Realtime) · MCP (Model Context Protocol) · RAG / pgvector · agentic pipelines · prompt engineering · n8n
-- **Voice AI:** Twilio MediaStreams · Deepgram STT · ElevenLabs TTS · real-time WebSocket audio bridges
+- **Voice AI:** Gemini Live · Twilio Media Streams + SIP · ElevenLabs · Deepgram STT · real-time WebSocket audio bridges
 - **Backend:** ASP.NET Core · Node.js · FastAPI · REST · WebSockets · arq + Redis
 - **Frontend:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · React Three Fiber / three.js · next-intl (RTL)
 - **Data:** PostgreSQL · SQL Server · MySQL · Oracle · Supabase · Prisma · Drizzle
@@ -26,7 +26,7 @@ Software engineer specialising in AI / LLM integration, agentic systems, and shi
 
 ## Featured projects
 
-- **Sawt (flagship)** — Production multi-tenant SaaS where AI voice agents answer and place real phone calls in Arabic dialects (Levantine, Khaleeji, Egyptian, MSA) plus 50+ languages. Real-time WebSocket bridge: Twilio → Deepgram STT → function-calling LLM → ElevenLabs TTS, ~57% cheaper per call-minute than the OpenAI Realtime API (kept as premium engine). Calendar/CRM/WhatsApp tools, pgvector RAG, orgs + roles, arq/Redis jobs, Dodo Payments billing, ar/en/fr RTL UI. Next.js 16 + FastAPI on Vercel + Fly.io. Live: https://ai-voice-agent-five-kappa.vercel.app
+- **Sawt (flagship)** — Production AI receptionist SaaS for MENA small businesses. One agent answers the website widget (voice + chat), WhatsApp, Instagram, Messenger and phone (SIP from the business's PBX) in the customer's Arabic dialect. Calls run speech-to-speech on Gemini Live over a WebSocket bridge (time-to-answer cut from 3.7 s to 1.4 s), chats on Gemini 2.5 Flash; RAG, calendar booking, leads, human transfer, live call takeover, simulated-caller testing, weekly insights email, MCP server. Next.js 16 + FastAPI + Supabase (pgvector, RLS) on Vercel + Fly.io, Dodo Payments, ar/en/fr RTL. Live: https://sawtai.app
 - **Maskan (in build)** — Real-time 3D off-plan home configurator for Gulf developers: walk-through / floor-plan / exterior cameras, live-priced finishes, multiplayer shared viewings over WebSockets, multi-tenant white-labelling, broker commissions. React Three Fiber + FastAPI.
 - **ArdAI (in build)** — Arabic-first AI real-estate super-app: Claude-powered land advisor (what to build, cost, value outlook), 3D previews, Gaussian splats, 360° tours, parcel subdivision.
 - **Hakaya al-Layl (in build)** — Interactive Arabic AI story game written live by Gemini in three dialects; fake-door monetisation to validate demand.
