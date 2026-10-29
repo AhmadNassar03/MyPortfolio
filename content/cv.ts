@@ -114,7 +114,7 @@ export const profile: Profile = {
   tagline:
     "I ship real AI products — LLM agents, computer vision, agentic automation — backed by solid engineering fundamentals.",
   location: "Amman, Jordan",
-  email: "ahmad.nassar5903@gmail.com",
+  email: "ahmad77.nassar77@gmail.com",
   phone: "+962 795 138 584",
   links: {
     github: "https://github.com/AhmadNassar03",
@@ -244,37 +244,36 @@ export const skills: SkillGroup[] = [
 
 export const experience: Experience[] = [
   {
-    role: "ASP.NET Developer",
-    company: "Orange Jordan",
+    role: "Software Engineering Intern",
+    company: "Orange Digital Center (Orange Jordan)",
     start: "March 2025",
     end: "June 2025",
     location: "Amman, Jordan",
     bullets: [
-      "Developed and maintained enterprise web applications using ASP.NET Core and SQL Server, improving system reliability and performance.",
-      "Designed and implemented RESTful APIs supporting real-time data exchange across internal and customer-facing platforms.",
-      "Collaborated within Agile/Scrum cross-functional teams to deliver features on schedule.",
+      "Built my Software Engineering graduation project (SiyanahJo) on-site at Orange Digital Center — Orange Jordan's coding & innovation hub — using its workspace, resources, and mentorship.",
+      "Consulted directly with Orange specialists and engineers to refine the project's design and implementation (ASP.NET Core, SQL Server) and deepen my industry knowledge.",
     ],
   },
   {
-    role: "ASP.NET Developer Intern",
+    role: ".NET Developer Intern",
     company: "Future Advanced Internet Solutions",
     start: "September 2024",
     end: "December 2024",
     location: "Amman, Jordan",
     bullets: [
-      "Built and tested backend modules using ASP.NET MVC and Entity Framework against live client databases.",
-      "Optimised complex SQL queries and assisted in implementing authentication and role-based authorisation systems.",
+      "Contributed to building a mobile app and website for Caesar Pizza (a fast-food chain in Jordan) as part of the development team.",
+      "Worked with ASP.NET Core / C# to develop application features and support testing and bug fixes within an Agile workflow.",
     ],
   },
   {
-    role: "Full Stack Developer Intern",
+    role: "Full-Stack Development Trainee",
     company: "SHAI for AI",
     start: "May 2022",
     end: "September 2022",
     location: "Amman, Jordan",
     bullets: [
-      "Contributed to full-stack features using JavaScript (frontend) and C# (backend), integrating third-party APIs with secure data handling.",
-      "Participated in code reviews and applied software quality practices in an AI-focused product environment.",
+      "Completed a 90-hour full-stack development training program (Webtoon Club for Web Tech & SHAI for AI), building web applications with React, JavaScript, and Node.js.",
+      "Strengthened core front-end and full-stack engineering fundamentals through hands-on, project-based learning.",
     ],
   },
 ];

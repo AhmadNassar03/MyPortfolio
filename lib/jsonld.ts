@@ -5,7 +5,7 @@
  * Schema reference: https://schema.org/Person, https://schema.org/CreativeWork
  */
 
-import { profile, projects, certifications, education, experience } from "@/content/cv";
+import { profile, projects, certifications, education } from "@/content/cv";
 
 export const SITE_URL = "https://ahmadnassarportfolio.vercel.app";
 
@@ -52,10 +52,6 @@ export function personSchema() {
       recognizedBy: { "@type": "Organization", name: c.issuer },
       dateCreated: c.year,
     })),
-    worksFor: experience.slice(0, 1).map((e) => ({
-      "@type": "Organization",
-      name: e.company,
-    }))[0],
   };
 }
 

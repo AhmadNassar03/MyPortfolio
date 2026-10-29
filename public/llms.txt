@@ -10,7 +10,7 @@ Software engineer specialising in AI / LLM integration, agentic systems, and shi
 - **Education:** B.Sc. Software Engineering, Al-Zaytoonah University of Jordan (2025)
 - **Location:** Amman, Jordan · open to remote
 - **Languages:** Arabic (native), English (professional)
-- **Email:** ahmad.nassar5903@gmail.com
+- **Email:** ahmad77.nassar77@gmail.com
 - **GitHub:** https://github.com/AhmadNassar03
 - **LinkedIn:** https://linkedin.com/in/ahmad-nassar-27275123b
 
@@ -37,9 +37,9 @@ Software engineer specialising in AI / LLM integration, agentic systems, and shi
 
 ## Experience
 
-- **Orange Jordan** — ASP.NET Developer (Mar–Jun 2025): enterprise web apps in ASP.NET Core + SQL Server, RESTful APIs, Agile/Scrum.
-- **Future Advanced Internet Solutions** — ASP.NET Developer Intern (Sep–Dec 2024): MVC + Entity Framework, query optimisation, role-based auth.
-- **SHAI for AI** — Full Stack Developer Intern (May–Sep 2022): JavaScript + C# full-stack, third-party API integration in an AI product environment.
+- **Orange Digital Center (Orange Jordan)** — Software Engineering Intern (Mar–Jun 2025): built the SiyanahJo graduation project on-site with mentorship from Orange engineers (ASP.NET Core, SQL Server).
+- **Future Advanced Internet Solutions** — .NET Developer Intern (Sep–Dec 2024): mobile app and website for Caesar Pizza in ASP.NET Core / C#, Agile team.
+- **SHAI for AI** — Full-Stack Development Trainee (May–Sep 2022): 90-hour full-stack program building web apps with React, JavaScript and Node.js.
 
 ## AI certifications (26 total, all 2026)
 
@@ -82,4 +82,4 @@ claude-opus-4-7 · Model Context Protocol · agentic eval harnesses · productio
 
 Best fit: AI engineering, LLM integration, full-stack roles where the team values shipping over experimentation. Strong on backend fundamentals (ASP.NET, Node.js, Postgres) plus modern AI tooling (Claude, Groq, MCP). Comfortable owning a feature end-to-end.
 
-Reach out: ahmad.nassar5903@gmail.com
+Reach out: ahmad77.nassar77@gmail.com
