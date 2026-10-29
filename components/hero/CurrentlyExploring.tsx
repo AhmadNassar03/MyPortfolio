@@ -3,14 +3,14 @@
 import { profile } from "@/content/cv";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
+import { useMounted } from "@/lib/hooks";
 
 export function CurrentlyExploring() {
   const items = profile.currentlyExploring;
   const [index, setIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
 
   useEffect(() => {
-    setMounted(true);
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % items.length);
     }, 2400);

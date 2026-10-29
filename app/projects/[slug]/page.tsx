@@ -7,6 +7,9 @@ import { Footer } from "@/components/nav/Footer";
 import { NoiseLayer } from "@/components/ui/NoiseLayer";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { CountUp } from "@/components/motion/CountUp";
+import { SawtShowcase } from "@/components/sawt/SawtShowcase";
+import { statusLabel } from "@/components/projects/status";
 import { projectSchema, breadcrumbSchema, SITE_URL } from "@/lib/jsonld";
 
 type Params = Promise<{ slug: string }>;
@@ -39,6 +42,10 @@ export default async function ProjectPage({ params }: { params: Params }) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
+
+  const at = projects.indexOf(project);
+  const prev = projects[(at - 1 + projects.length) % projects.length];
+  const next = projects[(at + 1) % projects.length];
 
   const schema = projectSchema(project.slug);
   const crumbs = breadcrumbSchema([
@@ -92,7 +99,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
                 <span className="h-px w-8 bg-[var(--border-default)]" />
                 <span>{project.year}</span>
                 <span className="text-[var(--text-faint)]">·</span>
-                <span className="capitalize">{project.status}</span>
+                <span>{statusLabel[project.status]}</span>
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
@@ -138,6 +145,38 @@ export default async function ProjectPage({ params }: { params: Params }) {
               </div>
             </FadeIn>
           </header>
+
+          {/* Metrics */}
+          {project.metrics && (
+            <FadeIn delay={0.05}>
+              <dl className="mb-12 grid grid-cols-2 gap-3 md:grid-cols-4">
+                {project.metrics.map((m) => (
+                  <div key={m.label} className="glass rounded-2xl p-5">
+                    <dt className="font-display text-3xl text-[var(--text-primary)] md:text-4xl">
+                      <CountUp value={m.value} />
+                    </dt>
+                    <dd className="mt-1 text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
+                      {m.label}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </FadeIn>
+          )}
+
+          {/* Interactive demo */}
+          {project.slug === "sawt" && (
+            <section className="mb-12">
+              <h2 className="font-display mb-2 text-2xl text-[var(--text-primary)] md:text-3xl">
+                Hear the pipeline work
+              </h2>
+              <p className="mb-6 text-[var(--text-muted)]">
+                A scripted clinic booking, replayed in four dialects. Each stage
+                lights up as audio, transcripts and tool calls move through it.
+              </p>
+              <SawtShowcase compact />
+            </section>
+          )}
 
           {/* Stack */}
           <FadeIn delay={0.05}>
@@ -193,6 +232,30 @@ export default async function ProjectPage({ params }: { params: Params }) {
               </ul>
             </section>
           </FadeIn>
+
+          {/* Prev / next */}
+          <nav
+            aria-label="More projects"
+            className="mb-16 grid gap-3 sm:grid-cols-2"
+          >
+            {[prev, next].map((p, i) => (
+              <Link
+                key={p.slug}
+                href={`/projects/${p.slug}`}
+                className={`glass group rounded-2xl p-5 transition-colors hover:border-[var(--accent)] ${i === 1 ? "sm:text-right" : ""}`}
+              >
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
+                  {i === 0 ? "← previous" : "next →"}
+                </span>
+                <span className="font-display mt-1 block text-2xl text-[var(--text-primary)] group-hover:text-[var(--accent)]">
+                  {p.name}
+                </span>
+                <span className="block text-sm text-[var(--text-muted)]">
+                  {p.tagline}
+                </span>
+              </Link>
+            ))}
+          </nav>
 
           {/* Footer CTA */}
           <FadeIn delay={0.05}>

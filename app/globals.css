@@ -323,6 +323,114 @@ html[data-theme="light"] .noise-overlay {
 }
 
 /* ============================================================
+   Arabic text — dialect transcripts, brand marks
+   ============================================================ */
+.font-arabic {
+  font-family: var(--font-arabic), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+/* ============================================================
+   Spotlight card — glow + border that follow the pointer.
+   Set --mx / --my (px) from JS; falls back to centre.
+   ============================================================ */
+.spotlight {
+  --mx: 50%;
+  --my: 0%;
+}
+
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  background: radial-gradient(
+    420px circle at var(--mx) var(--my),
+    var(--accent-glow),
+    transparent 45%
+  );
+  z-index: 0;
+}
+
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* ============================================================
+   Marquee — infinite horizontal band
+   ============================================================ */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: marquee 48s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* ============================================================
+   Voice waveform bars (Sawt)
+   ============================================================ */
+.wave-bar {
+  transform-origin: center;
+  animation: wave 1.1s var(--ease-in-out) infinite;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Pipeline packet travelling down a vertical connector */
+@keyframes packet-y {
+  from {
+    top: -0.75rem;
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.packet-y {
+  animation: packet-y 0.8s var(--ease-in-out) infinite;
+}
+
+/* ============================================================
    Hover lift utility (on cards)
    ============================================================ */
 .hover-lift {

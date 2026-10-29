@@ -3,6 +3,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { FadeIn } from "@/components/motion/FadeIn";
 import Link from "next/link";
+import { CopyEmail } from "./CopyEmail";
 
 export function Contact() {
   return (
@@ -26,7 +27,7 @@ export function Contact() {
                 eyebrow="Contact"
                 title={
                   <>
-                    Let's build{" "}
+                    Let&apos;s build{" "}
                     <em className="font-display italic aurora-text">
                       something
                     </em>
@@ -56,6 +57,7 @@ export function Contact() {
                   </svg>
                   {profile.email}
                 </MagneticButton>
+                <CopyEmail email={profile.email} />
                 <MagneticButton
                   href="/ahmad-nassar-cv.pdf"
                   variant="outline"

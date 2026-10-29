@@ -1,6 +1,9 @@
+"use client";
+
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import { certifications, type Certification } from "@/content/cv";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { FadeIn } from "@/components/motion/FadeIn";
 import clsx from "clsx";
 
 const issuerStyles: Record<
@@ -24,7 +27,13 @@ const issuerStyles: Record<
 function CertCard({ cert, index }: { cert: Certification; index: number }) {
   const style = issuerStyles[cert.issuer];
   return (
-    <FadeIn delay={Math.min(index, 8) * 0.03}>
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.35, delay: Math.min(index, 12) * 0.025 }}
+    >
       <a
         href={cert.verifyUrl}
         target="_blank"
@@ -65,30 +74,33 @@ function CertCard({ cert, index }: { cert: Certification; index: number }) {
           </svg>
         </div>
       </a>
-    </FadeIn>
+    </motion.div>
   );
 }
 
-export function CertGrid() {
-  const featured = certifications.filter((c) => c.featured);
-  const rest = certifications.filter((c) => !c.featured);
+type Tab = "Featured" | "Anthropic" | "Google" | "All";
 
-  const restByIssuer: Record<string, Certification[]> = {
-    Anthropic: rest.filter((c) => c.issuer === "Anthropic"),
-    Google: rest.filter((c) => c.issuer === "Google"),
-    Coursera: rest.filter((c) => c.issuer === "Coursera"),
-  };
+const tabs: { id: Tab; match: (c: Certification) => boolean }[] = [
+  { id: "Featured", match: (c) => !!c.featured },
+  { id: "Anthropic", match: (c) => c.issuer === "Anthropic" },
+  { id: "Google", match: (c) => c.issuer === "Google" },
+  { id: "All", match: () => true },
+];
+
+export function CertGrid() {
+  const [tab, setTab] = useState<Tab>("Featured");
+  const shown = certifications.filter(tabs.find((t) => t.id === tab)!.match);
 
   return (
     <section id="certs" className="section">
       <div className="container-max">
         <SectionHeader
-          index="05"
+          index="06"
           eyebrow="Certifications"
           title={
             <>
               <em className="font-display italic aurora-text">
-                26 AI certifications
+                {certifications.length} AI certifications
               </em>{" "}
               from Anthropic & Google.
             </>
@@ -96,43 +108,44 @@ export function CertGrid() {
           description="Anthropic deep-track (MCP, Bedrock, Vertex, Anthropic API, Claude Code) plus Google's full AI for Work specialization. Every card links to its public verifier."
         />
 
-        {/* Featured row */}
-        <div className="mb-10">
-          <h3 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-[var(--accent)]">
-            // featured — production AI
-          </h3>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((cert, i) => (
-              <CertCard key={cert.credentialId} cert={cert} index={i} />
-            ))}
-          </div>
-        </div>
-
-        {/* Rest grouped by issuer */}
-        <div className="space-y-10">
-          {Object.entries(restByIssuer).map(([issuer, certs]) => {
-            if (certs.length === 0) return null;
+        <div role="tablist" aria-label="Filter certifications" className="mb-6 flex flex-wrap gap-2">
+          {tabs.map((t) => {
+            const count = certifications.filter(t.match).length;
             return (
-              <div key={issuer}>
-                <h3 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
-                  // {issuer.toLowerCase()} —{" "}
-                  <span className="text-[var(--text-faint)]">
-                    {certs.length} more
-                  </span>
-                </h3>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {certs.map((cert, i) => (
-                    <CertCard
-                      key={cert.credentialId}
-                      cert={cert}
-                      index={featured.length + i}
-                    />
-                  ))}
-                </div>
-              </div>
+              <button
+                key={t.id}
+                role="tab"
+                aria-selected={tab === t.id}
+                onClick={() => setTab(t.id)}
+                className={clsx(
+                  "relative rounded-full border px-4 py-2 text-sm transition-colors",
+                  tab === t.id
+                    ? "border-transparent text-[var(--text-primary)]"
+                    : "border-[var(--border-default)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+                )}
+              >
+                {tab === t.id && (
+                  <motion.span
+                    layoutId="cert-tab"
+                    className="absolute inset-0 rounded-full bg-[var(--surface-3)]"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                )}
+                <span className="relative">
+                  {t.id} <span className="font-mono text-[10px] opacity-60">{count}</span>
+                </span>
+              </button>
             );
           })}
         </div>
+
+        <motion.div layout className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <AnimatePresence initial={false}>
+            {shown.map((cert, i) => (
+              <CertCard key={cert.credentialId} cert={cert} index={i} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

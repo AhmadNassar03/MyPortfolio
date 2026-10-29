@@ -1,7 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Instrument_Serif,
+  IBM_Plex_Sans_Arabic,
+} from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { MotionRoot } from "@/components/providers/MotionRoot";
+import { ScrollProgress } from "@/components/fx/ScrollProgress";
+import { CursorGlow } from "@/components/fx/CursorGlow";
+import { CommandPalette } from "@/components/command/CommandPalette";
 import { personSchema, websiteSchema, SITE_URL } from "@/lib/jsonld";
 import { profile } from "@/content/cv";
 import "./globals.css";
@@ -26,6 +34,13 @@ const display = Instrument_Serif({
   display: "swap",
   weight: ["400"],
   style: ["normal", "italic"],
+});
+
+const arabic = IBM_Plex_Sans_Arabic({
+  variable: "--font-arabic",
+  subsets: ["arabic"],
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -107,7 +122,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${sans.variable} ${mono.variable} ${display.variable}`}
+      className={`${sans.variable} ${mono.variable} ${display.variable} ${arabic.variable}`}
     >
       <body className="antialiased">
         <script
@@ -119,7 +134,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }}
         />
         <ThemeProvider>
-          <MotionRoot>{children}</MotionRoot>
+          <MotionRoot>
+            <ScrollProgress />
+            <CursorGlow />
+            <CommandPalette />
+            {children}
+          </MotionRoot>
         </ThemeProvider>
       </body>
     </html>

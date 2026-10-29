@@ -47,7 +47,7 @@ export function MagneticButton({
   const styles = clsx(
     "relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-tight transition-colors will-change-transform",
     variant === "primary" &&
-      "bg-[var(--accent)] text-[oklch(15%_0.02_280)] hover:bg-[var(--accent-hover)]",
+      "bg-[var(--accent)] text-[var(--on-accent)] hover:bg-[var(--accent-hover)]",
     variant === "outline" &&
       "border border-[var(--border-strong)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)]",
     variant === "ghost" &&

@@ -16,15 +16,20 @@ Software engineer specialising in AI / LLM integration, agentic systems, and shi
 
 ## Primary stack
 
-- **AI / LLM:** Groq Llama-3.3-70b · Gemini 2.0 Flash · Claude (Anthropic) · OpenAI · MCP (Model Context Protocol) · agentic pipelines · prompt engineering · n8n
-- **Backend:** ASP.NET Core · Node.js · FastAPI · REST · WebSockets
-- **Frontend:** Next.js (14+) · TypeScript · React · Tailwind CSS
+- **AI / LLM:** Claude (Anthropic) · Gemini · Groq Llama-3.3-70b · OpenAI (incl. Realtime) · MCP (Model Context Protocol) · RAG / pgvector · agentic pipelines · prompt engineering · n8n
+- **Voice AI:** Twilio MediaStreams · Deepgram STT · ElevenLabs TTS · real-time WebSocket audio bridges
+- **Backend:** ASP.NET Core · Node.js · FastAPI · REST · WebSockets · arq + Redis
+- **Frontend:** Next.js 16 · React 19 · TypeScript · Tailwind CSS · React Three Fiber / three.js · next-intl (RTL)
 - **Data:** PostgreSQL · SQL Server · MySQL · Oracle · Supabase · Prisma · Drizzle
-- **Cloud / DevOps:** Vercel · Railway · Docker · GitHub Actions · CI/CD
+- **Cloud / DevOps:** Vercel · Fly.io · Railway · Docker · GitHub Actions · CI/CD · Sentry
 - **CV / ML:** TensorFlow.js · YOLOv8
 
 ## Featured projects
 
+- **Sawt (flagship)** — Production multi-tenant SaaS where AI voice agents answer and place real phone calls in Arabic dialects (Levantine, Khaleeji, Egyptian, MSA) plus 50+ languages. Real-time WebSocket bridge: Twilio → Deepgram STT → function-calling LLM → ElevenLabs TTS, ~57% cheaper per call-minute than the OpenAI Realtime API (kept as premium engine). Calendar/CRM/WhatsApp tools, pgvector RAG, orgs + roles, arq/Redis jobs, Dodo Payments billing, ar/en/fr RTL UI. Next.js 16 + FastAPI on Vercel + Fly.io. Live: https://ai-voice-agent-five-kappa.vercel.app
+- **Maskan (in build)** — Real-time 3D off-plan home configurator for Gulf developers: walk-through / floor-plan / exterior cameras, live-priced finishes, multiplayer shared viewings over WebSockets, multi-tenant white-labelling, broker commissions. React Three Fiber + FastAPI.
+- **ArdAI (in build)** — Arabic-first AI real-estate super-app: Claude-powered land advisor (what to build, cost, value outlook), 3D previews, Gaussian splats, 360° tours, parcel subdivision.
+- **Hakaya al-Layl (in build)** — Interactive Arabic AI story game written live by Gemini in three dialects; fake-door monetisation to validate demand.
 - **OmniAgent** — Production omnichannel AI SaaS routing customer conversations through an LLM-powered agent (Groq Llama-3.3-70b primary, Gemini 2.0 Flash fallback), multi-tenant Supabase, n8n orchestration. Live: https://omnichannel-saas-zeta.vercel.app
 - **LeadGrade** — AI lead scoring SaaS for debt-relief intake. TCPA + FTC TSR compliance hard stops, Gemini semantic 0–100 scoring, role-based dashboards, Recharts analytics. Live: https://lead-scoring-rho.vercel.app
 - **WorkForce AI** — Real-time workplace monitoring with TensorFlow.js + YOLOv8 inference, MJPEG ingest, WebSocket dashboard.

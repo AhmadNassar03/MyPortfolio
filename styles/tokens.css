@@ -28,6 +28,7 @@
   --accent-hover: oklch(82% 0.18 200);
   --accent-muted: oklch(60% 0.12 200);
   --accent-glow: oklch(75% 0.16 200 / 0.35);
+  --on-accent: oklch(15% 0.02 280);
 
   /* ── Semantic ────────────────────────────────────────── */
   --border-subtle: oklch(100% 0 0 / 0.06);
@@ -131,6 +132,7 @@ html[data-theme="light"],
   --accent-hover: oklch(42% 0.2 270);
   --accent-muted: oklch(60% 0.12 270);
   --accent-glow: oklch(48% 0.18 270 / 0.25);
+  --on-accent: oklch(98% 0.005 90);
 
   --border-subtle: oklch(0% 0 0 / 0.06);
   --border-default: oklch(0% 0 0 / 0.1);

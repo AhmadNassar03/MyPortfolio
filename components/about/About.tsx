@@ -7,7 +7,7 @@ export function About() {
     <section id="about" className="section">
       <div className="container-max grid gap-12 lg:grid-cols-[1fr_2fr]">
         <SectionHeader
-          index="01"
+          index="02"
           eyebrow="About"
           title={
             <>

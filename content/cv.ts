@@ -66,10 +66,22 @@ export interface Project {
   highlights: string[];
   /** bento sizing — "wide" = 2 cols, "tall" = 2 rows, "default" = 1x1 */
   bentoSize: "feature" | "wide" | "tall" | "default";
-  status: "live" | "private" | "archived";
+  status: "live" | "building" | "private" | "archived";
   year: string;
   accent: "violet" | "cyan" | "pink" | "amber";
+  /** Filter chips in the work grid */
+  tags: ProjectTag[];
+  /** Big-number stats shown on the card + case study */
+  metrics?: { value: string; label: string }[];
 }
+
+export type ProjectTag =
+  | "AI / LLM"
+  | "Voice"
+  | "3D / Spatial"
+  | "Computer Vision"
+  | "SaaS"
+  | "Arabic-first";
 
 export interface Certification {
   name: string;
@@ -111,12 +123,13 @@ export const profile: Profile = {
   },
   bio: "Software Engineering graduate with a genuine passion for AI and applied machine learning. Solid backend and full-stack foundation in ASP.NET Core, Node.js, Next.js, and SQL — now channelled into building real AI-powered products. Shipped multiple live AI SaaS applications integrating LLMs (Groq Llama-3, Gemini, Claude/Anthropic), real-time computer-vision pipelines with TensorFlow.js and YOLOv8, and agentic automation workflows via n8n and MCP. Certified in AI by Google and Anthropic.",
   currentlyExploring: [
-    "claude-opus-4-7",
-    "mcp",
-    "groq-llama-3.3-70b",
+    "realtime-voice-pipelines",
+    "arabic-dialect-tts",
+    "react-three-fiber",
+    "mcp-servers",
     "agentic-eval-harnesses",
   ],
-  nowStudying: "agentic eval harnesses · MCP servers · production LLM patterns",
+  nowStudying: "sub-second voice latency · multiplayer 3D on the web · agent evals",
   highlights: [
     { value: "5", label: "live AI products shipped" },
     { value: "26", label: "AI certifications earned" },
@@ -137,6 +150,10 @@ export const skills: SkillGroup[] = [
       "Prompt Engineering",
       "Agentic Pipelines",
       "MCP (Model Context Protocol)",
+      "RAG / pgvector",
+      "Deepgram STT",
+      "ElevenLabs TTS",
+      "OpenAI Realtime",
       "n8n",
       "TensorFlow.js",
       "YOLOv8",
@@ -145,12 +162,29 @@ export const skills: SkillGroup[] = [
   {
     category: "Backend",
     weight: 2,
-    items: ["ASP.NET Core", "Node.js", "FastAPI", "RESTful APIs", "WebSockets"],
+    items: [
+      "ASP.NET Core",
+      "Node.js",
+      "FastAPI",
+      "RESTful APIs",
+      "WebSockets",
+      "Twilio Voice",
+      "arq + Redis",
+    ],
   },
   {
     category: "Frontend",
     weight: 3,
-    items: ["Next.js 14+", "TypeScript", "React", "Tailwind CSS", "Recharts"],
+    items: [
+      "Next.js 16",
+      "TypeScript",
+      "React 19",
+      "Tailwind CSS",
+      "React Three Fiber",
+      "three.js",
+      "next-intl (RTL)",
+      "Recharts",
+    ],
   },
   {
     category: "Databases",
@@ -168,7 +202,15 @@ export const skills: SkillGroup[] = [
   {
     category: "DevOps / Cloud",
     weight: 5,
-    items: ["Vercel", "Railway", "Docker", "GitHub Actions", "CI/CD"],
+    items: [
+      "Vercel",
+      "Fly.io",
+      "Railway",
+      "Docker",
+      "GitHub Actions",
+      "CI/CD",
+      "Sentry",
+    ],
   },
   {
     category: "Languages",
@@ -243,33 +285,47 @@ export const projects: Project[] = [
     name: "Sawt",
     tagline: "Arabic AI voice agents for MENA — real phone calls, real-time",
     description:
-      "Production multi-tenant SaaS where AI voice agents answer and place phone calls in Arabic dialects (Levantine, Khaleeji, Egyptian, MSA) to handle bookings, orders, and support 24/7.",
+      "Production multi-tenant SaaS where AI voice agents answer and place phone calls in Arabic dialects (Levantine, Khaleeji, Egyptian, MSA) plus 50+ languages — bookings, orders, transfers and support, 24/7.",
     longDescription:
-      "Sawt is a production, multi-tenant voice-AI platform built for the MENA market: AI agents hold real phone conversations in Arabic dialects to take bookings, answer questions, capture leads, and hand off to humans. The core is a real-time media bridge that streams live call audio through Twilio, Deepgram speech-to-text, a function-calling LLM, and ElevenLabs speech synthesis — engineered to cut cost per call-minute by roughly 57% versus the OpenAI Realtime API while staying low-latency and natural. On top sits the full SaaS: 14+ agent tools and integrations (calendars, CRM, WhatsApp, Stripe payments), a RAG knowledge base, organization and role-based access control, usage-based billing (Paddle / HyperPay), and automated push-to-deploy CI/CD across Vercel and Fly.io.",
+      "Sawt (صوت — \"voice\") is a production, multi-tenant voice-AI platform built for clinics, real estate, restaurants and e-commerce in Jordan, Saudi Arabia and the UAE. AI agents hold real phone conversations in Arabic dialects to take bookings, answer questions, capture leads and hand off to humans. The core is a real-time WebSocket media bridge that streams live call audio from Twilio through Deepgram speech-to-text, a function-calling LLM and ElevenLabs speech synthesis — about 57% cheaper per call-minute than the OpenAI Realtime API, which stays wired in as the premium engine with a safe degrade path. On top sits the full SaaS: function-calling tools (booking, availability, transfer, SMS/WhatsApp/email, CRM lookup, payment links), OAuth integrations with Google/Microsoft Calendar, HubSpot, Salesforce and Zoho, a pgvector RAG knowledge base agents cite mid-call, organizations with roles, API keys and signed webhooks, durable arq + Redis jobs for campaign dialing, usage metering with live Dodo Payments billing, a platform admin console, and a bespoke editorial UI in Arabic, English and French with full RTL. Sentry on both ends, CSP, rate limiting, recording-consent and Do-Not-Call flows, EU data residency, and push-to-deploy CI/CD across Vercel and Fly.io.",
     stack: [
       "Next.js 16",
+      "React 19",
       "FastAPI",
+      "WebSockets",
       "Supabase (pgvector)",
       "Twilio",
-      "OpenAI Realtime",
       "Deepgram",
       "ElevenLabs",
+      "OpenAI Realtime",
+      "arq + Redis",
+      "Dodo Payments",
+      "next-intl (RTL)",
+      "Sentry",
       "Fly.io",
       "Vercel",
     ],
     liveUrl: "https://ai-voice-agent-five-kappa.vercel.app",
     repoUrl: "https://github.com/AhmadNassar03",
     highlights: [
-      "Real-time voice pipeline: live call audio streamed through Twilio, Deepgram STT, a function-calling LLM, and ElevenLabs TTS",
-      "~57% lower cost per call-minute versus the OpenAI Realtime API",
-      "Arabic dialect support — Levantine, Khaleeji, Egyptian, and MSA",
-      "14+ agent tools and integrations: calendars, CRM, WhatsApp, Stripe payments, plus a RAG knowledge base",
-      "Multi-tenant org / role-based access, usage-based billing (Paddle / HyperPay), push-to-deploy CI/CD on Vercel + Fly.io",
+      "Real-time voice pipeline: live call audio streamed over WebSockets through Twilio, Deepgram STT, a function-calling LLM and ElevenLabs TTS",
+      "~57% lower cost per call-minute than the OpenAI Realtime API, which stays available as the premium engine with safe degrade",
+      "Arabic dialects — Levantine, Khaleeji, Egyptian, MSA — plus 50+ languages, with a full ar / en / fr RTL interface",
+      "Function-calling tools and OAuth integrations: calendars, HubSpot / Salesforce / Zoho, WhatsApp, SMS, email, payment links, plus a pgvector RAG knowledge base",
+      "Workplace SaaS: orgs, roles, invites, API keys, signed + retried webhooks, audit log, admin console, durable arq + Redis campaign jobs",
+      "Usage metering with live Dodo Payments billing, Sentry observability, CSP, rate limiting, consent + Do-Not-Call, EU data residency",
     ],
     bentoSize: "feature",
     status: "live",
     year: "2026",
     accent: "violet",
+    tags: ["AI / LLM", "Voice", "SaaS", "Arabic-first"],
+    metrics: [
+      { value: "−57%", label: "cost / call-minute" },
+      { value: "4", label: "Arabic dialects" },
+      { value: "600+", label: "commits shipped" },
+      { value: "3", label: "UI languages (RTL)" },
+    ],
   },
   {
     slug: "omniagent",
@@ -302,6 +358,8 @@ export const projects: Project[] = [
     status: "live",
     year: "2025",
     accent: "violet",
+    tags: ["AI / LLM", "SaaS"],
+    metrics: [{ value: "65+", label: "production deploys" }],
   },
   {
     slug: "leadgrade",
@@ -332,6 +390,8 @@ export const projects: Project[] = [
     status: "live",
     year: "2025",
     accent: "cyan",
+    tags: ["AI / LLM", "SaaS"],
+    metrics: [{ value: "0–100", label: "semantic lead score" }],
   },
   {
     slug: "workforce-ai",
@@ -361,6 +421,7 @@ export const projects: Project[] = [
     status: "private",
     year: "2024",
     accent: "pink",
+    tags: ["AI / LLM", "Computer Vision"],
   },
   {
     slug: "siyanahjo",
@@ -382,6 +443,99 @@ export const projects: Project[] = [
     status: "archived",
     year: "2025",
     accent: "amber",
+    tags: ["SaaS"],
+  },
+  {
+    slug: "maskan",
+    name: "Maskan",
+    tagline: "Real-time 3D off-plan home configurator for Gulf developers",
+    description:
+      "Walk a home that isn't built yet, swap finishes and watch the price move on the same frame — in Arabic or English, alone or in a live shared viewing with your agent.",
+    longDescription:
+      "Roughly three quarters of Dubai's residential deals are off-plan: buyers commit six or seven figures against a floor plan and a few renders. Maskan closes that gap with a browser-based 3D configurator. A buyer opens a link, walks through a regionally authentic Gulf villa (majlis, prep kitchen, staff room) in first person with collision, flips to a roof-off floor plan or an exterior orbit, and changes six finish categories while floating price hotspots — occlusion-tested and bound both ways to the panel — update the total live. Phase 2 turns it into a platform: multi-tenant white-labelling with a closed, validated token set per developer, per-user hashed-token accounts, a broker role with many-to-many mandates and commission rates snapshotted onto every configuration, and genuine multiplayer shared viewings over WebSockets where every participant's position and heading are drawn in the scene and anyone can lead the tour.",
+    stack: [
+      "Next.js 16",
+      "React Three Fiber",
+      "three.js",
+      "drei",
+      "Zustand",
+      "FastAPI",
+      "SQLModel",
+      "WebSockets",
+      "Unreal Engine 5",
+    ],
+    highlights: [
+      "Three camera modes — first-person walk-through with collision, roof-off floor plan orbit, and exterior elevation orbit",
+      "Six regionally-correct finish categories that change the scene and the price on the same frame",
+      "Price hotspots anchored to the surfaces they describe, occlusion-tested, with a 'take me there' camera walk",
+      "Multiplayer shared viewings over WebSockets — synced selections, live avatars, opt-in follow-the-leader",
+      "Multi-tenant white-labelling, broker mandates and commission snapshots, hashed per-user tokens",
+    ],
+    bentoSize: "default",
+    status: "building",
+    year: "2026",
+    accent: "cyan",
+    tags: ["3D / Spatial", "SaaS", "Arabic-first"],
+    metrics: [
+      { value: "3", label: "camera modes" },
+      { value: "6", label: "live-priced finish groups" },
+    ],
+  },
+  {
+    slug: "ardai",
+    name: "ArdAI",
+    tagline: "AI real-estate & construction super-app for MENA landowners",
+    description:
+      "Point at your plot on a map and Claude tells you what to build, the rough cost and a value outlook — then browse fitting designs in 3D, subdivide, list with 360° tours and find contractors.",
+    longDescription:
+      "ArdAI (أرض — \"land\") is an Arabic-first, full-RTL super-app for landowners in Jordan, Syria and the Gulf. The AI Land Advisor reads a parcel and returns what to build, an estimated cost grounded in a curated cost-reference table, and a value outlook, using Claude when an API key is present and a deterministic mock otherwise — so the whole product runs end-to-end with zero keys. Around it: saved analyses, ready-made designs that fit the plot, 3D previews with model-viewer and Gaussian splats, parcel subdivision on a Leaflet map, property listings with Pannellum 360° tours, and a materials and engineer/contractor directory with an admin verification flow.",
+    stack: [
+      "Next.js 15",
+      "Claude API",
+      "next-intl (RTL)",
+      "Leaflet",
+      "model-viewer",
+      "Gaussian Splats",
+      "Pannellum 360°",
+      "Supabase",
+    ],
+    highlights: [
+      "AI Land Advisor: what to build, rough cost and value outlook, grounded in a cost-reference table",
+      "Mock-first architecture — every pillar runs end-to-end with zero API keys, real Claude when configured",
+      "3D design previews (model-viewer, Gaussian splats) and 360° property tours",
+      "Map-based parcel subdivision, listings, materials and contractor directory",
+    ],
+    bentoSize: "default",
+    status: "building",
+    year: "2026",
+    accent: "amber",
+    tags: ["AI / LLM", "3D / Spatial", "Arabic-first"],
+  },
+  {
+    slug: "hakaya",
+    name: "Hakaya al-Layl",
+    tagline: "Interactive Arabic AI stories, written live in your dialect",
+    description:
+      "A mobile-first RTL story game: pick a world (jinn horror, detective, desert caravan) and a dialect, and the AI writes the story turn by turn around your choices.",
+    longDescription:
+      "حكايا الليل is a mobile-first Arabic web app built to validate a consumer idea in a week. The player picks a world — jinn horror, detective, a historical caravan — and a dialect (Saudi, Egyptian, Levantine), then Gemini writes the story live; at every step they tap one of three choices or type their own action. A daily free-story limit, fake-door 'watch an ad' and paid-unlock buttons measure real willingness to pay before any payment code exists, with go/kill thresholds written down up front. It runs fully locally on an in-process Postgres (PGlite) using the same SQL as production Supabase, so one data layer serves both.",
+    stack: [
+      "Next.js 16",
+      "Gemini 2.5 Flash-Lite",
+      "Supabase",
+      "PGlite",
+      "Tailwind v4",
+    ],
+    highlights: [
+      "Live LLM storytelling in three Arabic dialects with choice-or-free-text turns",
+      "Fake-door monetisation and analytics to validate demand before building payments",
+      "One SQL layer for local PGlite and hosted Supabase",
+    ],
+    bentoSize: "default",
+    status: "building",
+    year: "2026",
+    accent: "pink",
+    tags: ["AI / LLM", "Arabic-first"],
   },
 ];
 
@@ -632,4 +786,36 @@ export const sortedSkills = [...skills].sort((a, b) => a.weight - b.weight);
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+export const projectTags: ProjectTag[] = [
+  "AI / LLM",
+  "Voice",
+  "3D / Spatial",
+  "Computer Vision",
+  "SaaS",
+  "Arabic-first",
+];
+
+/** "Next.js 16" → "next.js", "Supabase (pgvector)" → "supabase" */
+function baseName(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/\(.*?\)/g, "")
+    .split(/\s+/)
+    .filter((w) => w && !/\d/.test(w))
+    .join(" ")
+    .trim();
+}
+
+/** Projects whose stack mentions a skill — powers the interactive skills matrix. */
+export function projectsUsing(skill: string): Project[] {
+  const s = baseName(skill);
+  if (!s) return [];
+  return projects.filter((p) =>
+    p.stack.some((t) => {
+      const b = baseName(t);
+      return b === s || b.startsWith(`${s} `) || s.startsWith(`${b} `);
+    }),
+  );
 }

@@ -19,7 +19,7 @@ export function Footer() {
         </div>
 
         <div className="font-mono text-xs text-[var(--text-faint)]">
-          <span className="text-[var(--text-muted)]">// now studying</span>{" "}
+          <span className="text-[var(--text-muted)]">{"// now studying"}</span>{" "}
           <span className="text-[var(--text-secondary)]">
             {profile.nowStudying}
           </span>
